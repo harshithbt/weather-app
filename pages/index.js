@@ -8,7 +8,8 @@ import { keyboard_gtr3 } from "../shared/keyboard";
 import { DEVICE_WIDTH, DEVICE_HEIGHT } from "../utils/config/device";
 
 const logger = DeviceRuntimeCore.HmLogger.getLogger("fetch_api");
-const { messageBuilder } = getApp()._options.globalData
+const { messageBuilder } = getApp()._options.globalData;
+const { weatherApiKey } = getApp()._options.globalData;
 
 const buttonWidth = 100;
 const buttonWidthMargin = 102;
@@ -58,7 +59,8 @@ Page({
           messageBuilder.request({
             method: "GET_DATA_WEATHER",
             params: {
-              city: cityData
+              city: cityData,
+              apiKey: weatherApiKey
             }
           })
             .then(data => {
@@ -170,7 +172,7 @@ Page({
       radius: px(16),
       normal_color: DEFAULT_COLOR,
       press_color: DEFAULT_COLOR_TRANSPARENT,
-      text: 'about',
+      text: 'About',
       click_func: (button_widget) => {
         hmApp.gotoPage({ url: 'pages/about' })
       },

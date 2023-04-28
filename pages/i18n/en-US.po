@@ -1,77 +1,50 @@
-msgid "quickNotes"
-msgstr "Quick Notes"
+msgid "appName"
+msgstr "Weather App"
 
-msgid "deleteThisNote"
-msgstr "Delete this note?"
+msgid "searchbt"
+msgstr "Search City"
 
-msgid "deleteAllNotes"
-msgstr "Delete all notes?"
+msgid "searchbtErr"
+msgstr "Please Enter City"
 
-msgid "doubleClickTimeout"
-msgstr "Double click timeout"
+msgid "searchbtCtn"
+msgstr "Searching.."
 
-msgid "noNewNoteCreated"
-msgstr "No new note will be created"
+msgid "cityNotFound"
+msgstr "\ntry with other\ncity"
 
-msgid "hints"
-msgstr "Hints"
+msgid "cityError"
+msgstr "Error-try after\nsome time\n or \n check internet\n connection."
 
-msgid "doubleClickToEdit"
-msgstr "Double-click a note to edit it"
+msgid "searchbtLoad"
+msgstr "Loading.."
 
-msgid "spaceButton"
-msgstr "On compact T9 keyboard, the space is the third character in the first key ',. ?' or you can use the '␣' button."
+msgid "welcome"
+msgstr "Welcome"
 
-msgid "keyboardInfo1"
-msgstr "There are 3 types of keyboard to choose:"
-
-msgid "keyboardInfo2"
-msgstr "- A compact T9"
-
-msgid "keyboardInfo3"
-msgstr "- A full QWERTY"
-
-msgid "keyboardInfo4"
-msgstr "- And a full QWERTY split on 2 screens"
+msgid "homeError"
+msgstr "Please check\ninternet connection\nin mobile."
 
 msgid "about"
-msgstr "About"
+msgstr "About
 
-msgid "createdBy"
-msgstr "Created by Gabriel Christino"
+msgid "aboutDev"
+msgstr "Developed By: Harshith B T"
+
+msgid "aboutInfo"
+msgstr "Fetch city weather details\n using openweathermap api."
+
+msgid "back"
+msgstr "Back"
+
+msgid "home"
+msgstr "Home"
 
 msgid "github"
-msgstr "GitHub gabrielchristino"
-
-msgid "buycoffee"
-msgstr "buymeacoffee gabrielchris"
+msgstr "GitHub Harshith B T"
 
 msgid "more"
 msgstr "More"
-
-msgid "noNotesCreated"
-msgstr "hello! you have no notes created yet"
-
-msgid "swipeRightToSettings"
-msgstr "Swipe from the right to settings"
-
-msgid "createFirstNote"
-msgstr "create first note"
-
-msgid "doubleClickSpeed"
-msgstr "Double-click speed"
-
-msgid "keyboardType"
-msgstr "Keyboard type"
-
-msgid "extendedKeyboard"
-msgstr "Extended Keyboard"
-
-msgid "extendedKeyboard2"
-msgstr "Extended Keyboard on 2 screens"
-
-msgid "t9Keyboard"
-msgstr "T9 Keyboard"
 
 msgid "settings"
 msgstr "Settings"

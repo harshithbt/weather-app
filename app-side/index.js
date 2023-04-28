@@ -1,6 +1,5 @@
 import { MessageBuilder } from '../shared/message'
 const messageBuilder = new MessageBuilder()
-const apiKey = '0e1a319212607124edaedb8e119b1936'
 
 // Simulating an asynchronous network request using Promise
 const mockAPI = async () => {
@@ -32,7 +31,7 @@ const fetchData = async (ctx) => {
 
 const fetchDataWeather = async (ctx, params) => {
   try {
-    const url = 'https://api.openweathermap.org/data/2.5/weather?q='+params.city+'&appid='+apiKey+'&units=metric';
+    const url = 'https://api.openweathermap.org/data/2.5/weather?q='+params.city+'&appid='+params.apiKey+'&units=metric';
     await fetch(url)
       .then(data => {
         ctx.response({
