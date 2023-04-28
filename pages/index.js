@@ -97,7 +97,7 @@ Page({
                     wTempMax: result.main.temp_max ? result.main.temp_max : '',
                     wPressure: result.main.pressure ? result.main.pressure : '',
                     whumidity: result.main.humidity ? result.main.humidity : '',
-                    wSealevel: result.main.sea_level ? result.main.sea_level : '',
+                    wSealevel: result.main.sea_level ? result.main.sea_level : 'NA',
                     wIcon: result.weather[0].icon,
                     eCode: result.cod,
                     eMessage: ''
