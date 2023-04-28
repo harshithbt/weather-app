@@ -118,7 +118,7 @@ Page({
                     wSealevel: '',
                     wIcon: '',
                     eCode: 500,
-                    eMessage: 'Error try after\nsome time.'
+                    eMessage: 'Error-try after\nsome time\n or \n check internet\n connection.'
                   })
                 })
               }
@@ -139,16 +139,24 @@ Page({
         align_v: hmUI.align.CENTER_V,
         text_style: hmUI.text_style.NONE,
         text: 'Welcome'
-    });
+      });
       messageBuilder.request({
         method: "GET_DATA_CITY"
       }).then(data => {
         const cityResult = data.result.body;
-        console.log(cityResult.city);
+        console.log(cityResult);
         hmUI.deleteWidget(welcomeText);
         searchbt.setProperty(hmUI.prop.TEXT, 'Search City');
-        getApp()._options.globalData.searchCity = cityResult.city ? cityResult.city : ''
-        keyboard = new keyboard_gtr3(100, DEVICE_WIDTH, getApp()._options.globalData.searchCity)
+        if (!cityResult) {
+          hmUI.showToast({
+            text: 'Please check\ninternet connection\nin mobile.'
+          })
+          getApp()._options.globalData.searchCity = ''
+          keyboard = new keyboard_gtr3(100, DEVICE_WIDTH, getApp()._options.globalData.searchCity)
+        } else {
+          getApp()._options.globalData.searchCity = cityResult ? cityResult.city : ''
+          keyboard = new keyboard_gtr3(100, DEVICE_WIDTH, getApp()._options.globalData.searchCity)
+        }
       })
     } else {
       keyboard = new keyboard_gtr3(100, DEVICE_WIDTH, getApp()._options.globalData.searchCity)
