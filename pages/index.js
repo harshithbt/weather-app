@@ -70,7 +70,6 @@ Page({
               console.log(json2str(result))
               // console.log(result.cod)
               if (result && result.cod && (result.cod == 404 || result.cod == '404')) {
-                console.log('if');
                 hmApp.gotoPage({
                   url: 'pages/weather',
                   param: json2str({
@@ -85,6 +84,23 @@ Page({
                     wIcon: '',
                     eCode: result.cod,
                     eMessage: result.message ? result.message + '\ntry with other\ncity' : ''
+                  })
+                })
+              } else if (result && result.cod && (result.cod == 401 || result.cod == '401')) {
+                hmApp.gotoPage({
+                  url: 'pages/weather',
+                  param: json2str({
+                    wLocation: '',
+                    wDescription: '',
+                    wTemp: '',
+                    wTempMin: '',
+                    wTempMax: '',
+                    wPressure: '',
+                    whumidity: '',
+                    wSealevel: '',
+                    wIcon: '',
+                    eCode: result.cod,
+                    eMessage: result.message
                   })
                 })
               } else if (result && result.cod && (result.cod == 200 || result.cod == '200')) {

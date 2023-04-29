@@ -1,4 +1,5 @@
 import { gettext } from 'i18n'
+import { DEFAULT_API_KEY } from '../utils/config/constants'
 AppSettingsPage({
   state: {
     apiKey: '',

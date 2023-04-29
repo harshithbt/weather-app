@@ -1,6 +1,7 @@
 import { MessageBuilder } from '../shared/message';
 const messageBuilder = new MessageBuilder()
 const userApikey = settings.settingsStorage.getItem('openWeatherKey');
+import { DEFAULT_API_KEY } from '../utils/config/constants'
 
 // Simulating an asynchronous network request using Promise
 const mockAPI = async () => {
@@ -31,15 +32,9 @@ const fetchData = async (ctx) => {
 }
 
 const fetchDataWeather = async (ctx, params) => {
-  let apiId = ''
-  if (userApikey && userApikey != '' && userApikey != undefined && userApikey != null) {
-    apiId = userApikey
-  } else {
-    apiId = params.apiKey
-  }
-  console.log('apiId-',apiId);
+  const appId = userApikey ? userApikey : DEFAULT_API_KEY;
   try {
-    const url = 'https://api.openweathermap.org/data/2.5/weather?q='+params.city+'&appid='+params.apiKey+'&units=metric';
+    const url = 'https://api.openweathermap.org/data/2.5/weather?q='+params.city+'&appid='+appId+'&units=metric';
     await fetch(url)
       .then(data => {
         ctx.response({
@@ -54,6 +49,8 @@ const fetchDataWeather = async (ctx, params) => {
 }
 
 const fetchCity = async (ctx) => {
+  console.log('apiId-',userApikey);
+  console.log('default-',DEFAULT_API_KEY);
   try {
     const url = 'https://ip-api.io/json';
     await fetch(url)
