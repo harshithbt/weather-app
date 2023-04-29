@@ -5,7 +5,7 @@ import {
 import { DEVICE_WIDTH } from "../utils/config/device";
 import { json2str, str2json, buf2hex, bin2hex, bin2json, str2buf } from '../shared/data'
 
-const logger = DeviceRuntimeCore.HmLogger.getLogger("fetch_api");
+const logger = DeviceRuntimeCore.HmLogger.getLogger("weather-app");
 let weatherInfo = '';
 
 Page({

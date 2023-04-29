@@ -1,15 +1,15 @@
 import './shared/device-polyfill'
-import { MessageBuilder } from './shared/message'
+import { MessageBuilder } from './shared/message';
+import { DEFAULT_API_KEY } from './utils/config/constants'
 
 const appId = 1014171;
-const weatherApiKey = '0e1a319212607124edaedb8e119b1936';
 const messageBuilder = new MessageBuilder({ appId })
 
 App({
   globalData: {
     messageBuilder: messageBuilder,
     searchCity: '',
-    weatherApiKey: weatherApiKey
+    defaultWeatherApiKey: DEFAULT_API_KEY
   },
   onCreate(options) {
     console.log('app on create invoke')

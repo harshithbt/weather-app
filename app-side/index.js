@@ -1,5 +1,6 @@
-import { MessageBuilder } from '../shared/message'
+import { MessageBuilder } from '../shared/message';
 const messageBuilder = new MessageBuilder()
+const userApikey = settings.settingsStorage.getItem('openWeatherKey');
 
 // Simulating an asynchronous network request using Promise
 const mockAPI = async () => {
@@ -30,6 +31,13 @@ const fetchData = async (ctx) => {
 }
 
 const fetchDataWeather = async (ctx, params) => {
+  let apiId = ''
+  if (userApikey && userApikey != '' && userApikey != undefined && userApikey != null) {
+    apiId = userApikey
+  } else {
+    apiId = params.apiKey
+  }
+  console.log('apiId-',apiId);
   try {
     const url = 'https://api.openweathermap.org/data/2.5/weather?q='+params.city+'&appid='+params.apiKey+'&units=metric';
     await fetch(url)

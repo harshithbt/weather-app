@@ -3,11 +3,8 @@ import {
     DEFAULT_COLOR_TRANSPARENT,
 } from "../utils/config/constants";
 import { DEVICE_WIDTH } from "../utils/config/device";
-// import * as ui from '../shared/ui'
 
-const logger = DeviceRuntimeCore.HmLogger.getLogger("fetch_api");
-let weatherInfo = '';
-let weatherInfoArray = [];
+const logger = DeviceRuntimeCore.HmLogger.getLogger("weather-app");
 
 Page({
     state: {},

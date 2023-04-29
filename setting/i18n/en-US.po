@@ -1,0 +1,5 @@
+msgid "addApiKey"
+msgstr "Add ApiKey"
+
+msgid "delete"
+msgstr "DELETE"

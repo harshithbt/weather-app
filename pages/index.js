@@ -7,9 +7,9 @@ import { json2str, str2json, buf2hex, bin2hex, bin2json, str2buf } from '../shar
 import { keyboard_gtr3 } from "../shared/keyboard";
 import { DEVICE_WIDTH, DEVICE_HEIGHT } from "../utils/config/device";
 
-const logger = DeviceRuntimeCore.HmLogger.getLogger("fetch_api");
+const logger = DeviceRuntimeCore.HmLogger.getLogger("weather-app");
 const { messageBuilder } = getApp()._options.globalData;
-const { weatherApiKey } = getApp()._options.globalData;
+const { defaultWeatherApiKey } = getApp()._options.globalData;
 
 const buttonWidth = 100;
 const buttonWidthMargin = 102;
@@ -60,7 +60,7 @@ Page({
             method: "GET_DATA_WEATHER",
             params: {
               city: cityData,
-              apiKey: weatherApiKey
+              apiKey: defaultWeatherApiKey
             }
           })
             .then(data => {
