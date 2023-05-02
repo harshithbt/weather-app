@@ -49,8 +49,6 @@ const fetchDataWeather = async (ctx, params) => {
 }
 
 const fetchCity = async (ctx) => {
-  console.log('apiId-',userApikey);
-  console.log('default-',DEFAULT_API_KEY);
   try {
     const url = 'https://ip-api.io/json';
     await fetch(url)

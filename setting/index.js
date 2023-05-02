@@ -128,7 +128,7 @@ AppSettingsPage({
         }, 'Check out source code in'),
         Link({
           source: 'https://github.com/harshithbt/weather-app',
-        }, 'github'),
+        }, 'Github'),
       ],
     )
     const developer = View(
