@@ -5,22 +5,34 @@ export class keyboard_gtr3 {
         this.isKeyPressed = false
         this.isKeyCapPressed = false
         this.isKeyNumericPressed = false
+        this.btnFontSize = 27
+        this.sideGap = 38
+        this.normalBtnWidth = 92
+        this.normalBtnHeight = 45
+        this.keyboadArea = _x - (this.sideGap * 2)
+        this.btnPadding = (this.keyboadArea - (this.normalBtnWidth * 4)) / 3
+        this.firstBtnCol = this.sideGap
+        this.secondBtnCol = this.firstBtnCol + this.normalBtnWidth + this.btnPadding
+        this.thirdBtnCol = this.secondBtnCol + this.normalBtnWidth + this.btnPadding
+        this.fourthBtnCol = this.thirdBtnCol + this.normalBtnWidth + this.btnPadding
+        this.textAreaWidth = 350
+        this.textAreaheight = 50
         this.vibrate = hmSensor.createSensor(hmSensor.id.VIBRATE)
 
         hmUI.createWidget(hmUI.widget.STROKE_RECT, {
-            x: (_x - px(348)) / 2,
+            x: (_x - this.textAreaWidth) / 2,
             y: this.start_y - 2,
-            w: 348,
-            h: 50,
+            w: this.textAreaWidth,
+            h: this.textAreaheight,
             radius: 5,
             color: 0xffffff
         })
 
         const text_input = hmUI.createWidget(hmUI.widget.TEXT, {
-            x: (_x - px(340)) / 2,
+            x: (_x - (this.textAreaWidth - 2)) / 2,
             y: this.start_y,
-            w: 340,
-            h: 48,
+            w: this.textAreaWidth - 2,
+            h: this.textAreaheight - 2,
             text_size: 26,
             color: 0xffffff
         })
@@ -36,12 +48,12 @@ export class keyboard_gtr3 {
         const GROUP_SYMBOLS = hmUI.createWidget(hmUI.widget.GROUP)
 
         const KEY_ABC = GROUP_LETTERS.createWidget(hmUI.widget.BUTTON, {
-            x: 40,
+            x: this.firstBtnCol,
             y: this.start_y + 156,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "abc",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -57,12 +69,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_DEF = GROUP_LETTERS.createWidget(hmUI.widget.BUTTON, {
-            x: 135,
+            x: this.secondBtnCol,
             y: this.start_y + 156,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "def",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -78,12 +90,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_GHI = GROUP_LETTERS.createWidget(hmUI.widget.BUTTON, {
-            x: 230,
+            x: this.thirdBtnCol,
             y: this.start_y + 156,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: 'ghi',
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -99,12 +111,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_JKL = GROUP_LETTERS.createWidget(hmUI.widget.BUTTON, {
-            x: 40,
+            x: this.firstBtnCol,
             y: this.start_y + 108,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "jkl",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -120,12 +132,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_MN = GROUP_LETTERS.createWidget(hmUI.widget.BUTTON, {
-            x: 135,
+            x: this.secondBtnCol,
             y: this.start_y + 108,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "mnñ",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -141,12 +153,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_OPQ = GROUP_LETTERS.createWidget(hmUI.widget.BUTTON, {
-            x: 230,
+            x: this.thirdBtnCol,
             y: this.start_y + 108,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "opq",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -162,12 +174,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_RST = GROUP_LETTERS.createWidget(hmUI.widget.BUTTON, {
-            x: 40,
+            x: this.firstBtnCol,
             y: this.start_y + 60,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "rst",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -183,12 +195,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_UVW = GROUP_LETTERS.createWidget(hmUI.widget.BUTTON, {
-            x: 135,
+            x: this.secondBtnCol,
             y: this.start_y + 60,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "uvw",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -204,12 +216,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_XYZ = GROUP_LETTERS.createWidget(hmUI.widget.BUTTON, {
-            x: 230,
+            x: this.thirdBtnCol,
             y: this.start_y + 60,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "xyz",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -225,12 +237,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_CAP = GROUP_LETTERS.createWidget(hmUI.widget.BUTTON, {
-            x: 325,
+            x: this.fourthBtnCol,
             y: this.start_y + 60,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "CAP",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -239,40 +251,40 @@ export class keyboard_gtr3 {
                     KEY_CAP.setProperty(hmUI.prop.MORE, {
                         normal_color: 0x333333,
                         press_color: 0x0986D4,
-                        x: 325,
+                        x: this.fourthBtnCol,
                         y: this.start_y + 60,
-                        w: 90,
-                        h: 45,
+                        w: this.normalBtnWidth,
+                        h: this.normalBtnHeight,
                         text: "CAP",
-                        text_size: 27,
+                        text_size: this.btnFontSize,
                         radius: px(14),
                     })
                     this.isKeyCapPressed = false;
-                    setKeysLowerCase(this.start_y);
+                    setKeysLowerCase(this.start_y, this.firstBtnCol, this.secondBtnCol, this.thirdBtnCol, this.fourthBtnCol, this.normalBtnWidth, this.normalBtnHeight, this.btnFontSize);
                 } else {
                     KEY_CAP.setProperty(hmUI.prop.MORE, {
                         normal_color: 0x0986D4,
                         press_color: 0x333333,
-                        x: 325,
+                        x: this.fourthBtnCol,
                         y: this.start_y + 60,
-                        w: 90,
-                        h: 45,
+                        w: this.normalBtnWidth,
+                        h: this.normalBtnHeight,
                         text: "CAP",
-                        text_size: 27
+                        text_size: this.btnFontSize
                     })
                     this.isKeyCapPressed = true;
-                    setKeysUpperCase(this.start_y);
+                    setKeysUpperCase(this.start_y, this.firstBtnCol, this.secondBtnCol, this.thirdBtnCol, this.fourthBtnCol, this.normalBtnWidth, this.normalBtnHeight, this.btnFontSize);
                 }
             }
         })
 
         const KEY_NUMBER = GROUP_LETTERS.createWidget(hmUI.widget.BUTTON, {
-            x: 325,
+            x: this.fourthBtnCol,
             y: this.start_y + 108,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "123",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -282,12 +294,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_ALPHABETIC = hmUI.createWidget(hmUI.widget.BUTTON, {
-            x: 325,
+            x: this.fourthBtnCol,
             y: this.start_y + 108,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "ABC",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -298,12 +310,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_SYMBOL = GROUP_LETTERS.createWidget(hmUI.widget.BUTTON, {
-            x: 325,
+            x: this.fourthBtnCol,
             y: this.start_y + 156,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "!@#",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -313,12 +325,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_SPACE = hmUI.createWidget(hmUI.widget.BUTTON, {
-            x: 40,
+            x: this.firstBtnCol,
             y: this.start_y + 204,
-            w: 185,
-            h: 45,
+            w: (this.normalBtnWidth * 2) + this.btnPadding,
+            h: this.normalBtnHeight,
             text: "SPACE",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -328,12 +340,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_CLR = hmUI.createWidget(hmUI.widget.BUTTON, {
-            x: 230,
+            x: this.thirdBtnCol,
             y: this.start_y + 204,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "CLR",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -343,12 +355,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_DEL = hmUI.createWidget(hmUI.widget.BUTTON, {
-            x: 325,
+            x: this.fourthBtnCol,
             y: this.start_y + 204,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "DEL",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0xAD3C23,
@@ -358,12 +370,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_A = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 135,
+            x: this.secondBtnCol,
             y: this.start_y + 156,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "a",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -375,12 +387,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_B = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 230,
+            x: this.thirdBtnCol,
             y: this.start_y + 156,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "b",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -392,12 +404,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_C = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 325,
+            x: this.fourthBtnCol,
             y: this.start_y + 156,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "c",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -409,12 +421,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_D = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 40,
+            x: this.firstBtnCol,
             y: this.start_y + 156,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "d",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -426,12 +438,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_E = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 230,
+            x: this.thirdBtnCol,
             y: this.start_y + 156,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "e",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -443,12 +455,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_F = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 325,
+            x: this.fourthBtnCol,
             y: this.start_y + 156,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "f",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -460,12 +472,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_G = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 40,
+            x: this.firstBtnCol,
             y: this.start_y + 156,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "g",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -477,12 +489,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_H = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 135,
+            x: this.secondBtnCol,
             y: this.start_y + 156,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "h",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -494,12 +506,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_I = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 325,
+            x: this.fourthBtnCol,
             y: this.start_y + 156,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "i",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -511,12 +523,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_J = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 135,
+            x: this.secondBtnCol,
             y: this.start_y + 108,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "j",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -528,12 +540,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_K = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 230,
+            x: this.thirdBtnCol,
             y: this.start_y + 108,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "k",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -545,12 +557,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_L = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 325,
+            x: this.fourthBtnCol,
             y: this.start_y + 108,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "l",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -562,12 +574,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_M = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 40,
+            x: this.firstBtnCol,
             y: this.start_y + 108,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "m",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -579,12 +591,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_N = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 230,
+            x: this.thirdBtnCol,
             y: this.start_y + 108,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "n",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -596,12 +608,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_ENE = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 325,
+            x: this.fourthBtnCol,
             y: this.start_y + 108,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "ñ",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -613,12 +625,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_O = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 40,
+            x: this.firstBtnCol,
             y: this.start_y + 108,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "o",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -630,12 +642,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_P = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 135,
+            x: this.secondBtnCol,
             y: this.start_y + 108,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "p",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -647,12 +659,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_Q = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 325,
+            x: this.fourthBtnCol,
             y: this.start_y + 108,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "q",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -664,12 +676,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_R = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 135,
+            x: this.secondBtnCol,
             y: this.start_y + 60,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "r",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -681,12 +693,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_S = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 230,
+            x: this.thirdBtnCol,
             y: this.start_y + 60,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "s",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -698,12 +710,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_T = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 325,
+            x: this.fourthBtnCol,
             y: this.start_y + 60,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "t",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -715,12 +727,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_U = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 40,
+            x: this.firstBtnCol,
             y: this.start_y + 60,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "u",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -732,12 +744,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_V = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 230,
+            x: this.thirdBtnCol,
             y: this.start_y + 60,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "v",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -749,12 +761,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_W = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 325,
+            x: this.fourthBtnCol,
             y: this.start_y + 60,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "w",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -766,12 +778,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_X = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 40,
+            x: this.firstBtnCol,
             y: this.start_y + 60,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "x",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -783,12 +795,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_Y = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 135,
+            x: this.secondBtnCol,
             y: this.start_y + 60,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "y",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -800,12 +812,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_Z = GROUP_ALPHABET.createWidget(hmUI.widget.BUTTON, {
-            x: 325,
+            x: this.fourthBtnCol,
             y: this.start_y + 60,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "z",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -819,12 +831,12 @@ export class keyboard_gtr3 {
         //Numeric keys 
 
         const KEY_ONE = GROUP_NUMERIC.createWidget(hmUI.widget.BUTTON, {
-            x: 40,
+            x: this.firstBtnCol,
             y: this.start_y + 156,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "1",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -834,12 +846,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_TWO = GROUP_NUMERIC.createWidget(hmUI.widget.BUTTON, {
-            x: 135,
+            x: this.secondBtnCol,
             y: this.start_y + 156,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "2",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -849,12 +861,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_THREE = GROUP_NUMERIC.createWidget(hmUI.widget.BUTTON, {
-            x: 230,
+            x: this.thirdBtnCol,
             y: this.start_y + 156,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: '3',
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -864,12 +876,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_FOUR = GROUP_NUMERIC.createWidget(hmUI.widget.BUTTON, {
-            x: 40,
+            x: this.firstBtnCol,
             y: this.start_y + 108,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "4",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -879,12 +891,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_FIVE = GROUP_NUMERIC.createWidget(hmUI.widget.BUTTON, {
-            x: 135,
+            x: this.secondBtnCol,
             y: this.start_y + 108,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "5",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -894,12 +906,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_SIX = GROUP_NUMERIC.createWidget(hmUI.widget.BUTTON, {
-            x: 230,
+            x: this.thirdBtnCol,
             y: this.start_y + 108,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "6",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -909,12 +921,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_SEVEN = GROUP_NUMERIC.createWidget(hmUI.widget.BUTTON, {
-            x: 40,
+            x: this.firstBtnCol,
             y: this.start_y + 60,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "7",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -924,12 +936,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_EIGHT = GROUP_NUMERIC.createWidget(hmUI.widget.BUTTON, {
-            x: 135,
+            x: this.secondBtnCol,
             y: this.start_y + 60,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "8",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -939,12 +951,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_NINE = GROUP_NUMERIC.createWidget(hmUI.widget.BUTTON, {
-            x: 230,
+            x: this.thirdBtnCol,
             y: this.start_y + 60,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "9",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -954,12 +966,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_ZERO = GROUP_NUMERIC.createWidget(hmUI.widget.BUTTON, {
-            x: 325,
+            x: this.fourthBtnCol,
             y: this.start_y + 60,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "0",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -971,12 +983,12 @@ export class keyboard_gtr3 {
         //Symbols keys 
 
         const KEY_EXCLAMATION = GROUP_SYMBOLS.createWidget(hmUI.widget.BUTTON, {
-            x: 40,
+            x: this.firstBtnCol,
             y: this.start_y + 156,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "!",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -986,12 +998,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_AT = GROUP_SYMBOLS.createWidget(hmUI.widget.BUTTON, {
-            x: 135,
+            x: this.secondBtnCol,
             y: this.start_y + 156,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "@",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -1001,12 +1013,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_NUMBER_SIGN = GROUP_SYMBOLS.createWidget(hmUI.widget.BUTTON, {
-            x: 230,
+            x: this.thirdBtnCol,
             y: this.start_y + 156,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: '#',
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -1016,12 +1028,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_MONEY = GROUP_SYMBOLS.createWidget(hmUI.widget.BUTTON, {
-            x: 40,
+            x: this.firstBtnCol,
             y: this.start_y + 108,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "$",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -1031,12 +1043,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_PERCENT = GROUP_SYMBOLS.createWidget(hmUI.widget.BUTTON, {
-            x: 135,
+            x: this.secondBtnCol,
             y: this.start_y + 108,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "%",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -1046,12 +1058,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_QUESTION = GROUP_SYMBOLS.createWidget(hmUI.widget.BUTTON, {
-            x: 230,
+            x: this.thirdBtnCol,
             y: this.start_y + 108,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "?",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -1061,12 +1073,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_AMPERSAND = GROUP_SYMBOLS.createWidget(hmUI.widget.BUTTON, {
-            x: 40,
+            x: this.firstBtnCol,
             y: this.start_y + 60,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "&",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -1076,12 +1088,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_OPEN_PARENTHESIS = GROUP_SYMBOLS.createWidget(hmUI.widget.BUTTON, {
-            x: 135,
+            x: this.secondBtnCol,
             y: this.start_y + 60,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "(",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -1091,12 +1103,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_CLOSE_PARENTHESIS = GROUP_SYMBOLS.createWidget(hmUI.widget.BUTTON, {
-            x: 230,
+            x: this.thirdBtnCol,
             y: this.start_y + 60,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: ")",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -1106,12 +1118,12 @@ export class keyboard_gtr3 {
         })
 
         const KEY_SLASH = GROUP_SYMBOLS.createWidget(hmUI.widget.BUTTON, {
-            x: 325,
+            x: this.fourthBtnCol,
             y: this.start_y + 60,
-            w: 90,
-            h: 45,
+            w: this.normalBtnWidth,
+            h: this.normalBtnHeight,
             text: "/",
-            text_size: 27,
+            text_size: this.btnFontSize,
             radius: px(14),
             normal_color: 0x333333,
             press_color: 0x0986D4,
@@ -1252,725 +1264,725 @@ export class keyboard_gtr3 {
             hideXYZButtons()
         }
 
-        function setKeysUpperCase(_start_y) {
+        function setKeysUpperCase(_start_y, firstBtnCol, secondBtnCol, thirdBtnCol, fourthBtnCol, normalBtnWidth, normalBtnHeight, btnFontSize) {
 
             KEY_ABC.setProperty(hmUI.prop.MORE, {
-                x: 40,
+                x: firstBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "ABC",
-                text_size: 27
+                text_size: btnFontSize
             })
 
             KEY_DEF.setProperty(hmUI.prop.MORE, {
-                x: 135,
+                x: secondBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "DEF",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_GHI.setProperty(hmUI.prop.MORE, {
-                x: 230,
+                x: thirdBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: 'GHI',
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_JKL.setProperty(hmUI.prop.MORE, {
-                x: 40,
+                x: firstBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "JKL",
-                text_size: 27
+                text_size: btnFontSize
             })
 
             KEY_MN.setProperty(hmUI.prop.MORE, {
-                x: 135,
+                x: secondBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "MNÑ",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_OPQ.setProperty(hmUI.prop.MORE, {
-                x: 230,
+                x: thirdBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: 'OPQ',
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_RST.setProperty(hmUI.prop.MORE, {
-                x: 40,
+                x: firstBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "RST",
-                text_size: 27
+                text_size: btnFontSize
             })
 
             KEY_UVW.setProperty(hmUI.prop.MORE, {
-                x: 135,
+                x: secondBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "UVW",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_XYZ.setProperty(hmUI.prop.MORE, {
-                x: 230,
+                x: thirdBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: 'XYZ',
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_A.setProperty(hmUI.widget.MORE, {
-                x: 135,
+                x: secondBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "A",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_B.setProperty(hmUI.widget.MORE, {
-                x: 230,
+                x: thirdBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "B",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_C.setProperty(hmUI.widget.MORE, {
-                x: 325,
+                x: fourthBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "C",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_D.setProperty(hmUI.widget.MORE, {
-                x: 40,
+                x: firstBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "D",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_E.setProperty(hmUI.widget.MORE, {
-                x: 230,
+                x: thirdBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "E",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_F.setProperty(hmUI.widget.MORE, {
-                x: 325,
+                x: fourthBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "F",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_G.setProperty(hmUI.widget.MORE, {
-                x: 40,
+                x: firstBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "G",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_H.setProperty(hmUI.widget.MORE, {
-                x: 135,
+                x: secondBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "H",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_I.setProperty(hmUI.widget.MORE, {
-                x: 325,
+                x: fourthBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "I",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_J.setProperty(hmUI.widget.MORE, {
-                x: 135,
+                x: secondBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "J",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_K.setProperty(hmUI.widget.MORE, {
-                x: 230,
+                x: thirdBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "K",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_L.setProperty(hmUI.widget.MORE, {
-                x: 325,
+                x: fourthBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "L",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_M.setProperty(hmUI.widget.MORE, {
-                x: 40,
+                x: firstBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "M",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_N.setProperty(hmUI.widget.MORE, {
-                x: 230,
+                x: thirdBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "N",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_ENE.setProperty(hmUI.widget.MORE, {
-                x: 325,
+                x: fourthBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "Ñ",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_O.setProperty(hmUI.widget.MORE, {
-                x: 40,
+                x: firstBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "O",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_P.setProperty(hmUI.widget.MORE, {
-                x: 135,
+                x: secondBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "P",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_Q.setProperty(hmUI.widget.MORE, {
-                x: 325,
+                x: fourthBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "Q",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_R.setProperty(hmUI.widget.MORE, {
-                x: 135,
+                x: secondBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "R",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_S.setProperty(hmUI.widget.MORE, {
-                x: 230,
+                x: thirdBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "S",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_T.setProperty(hmUI.widget.MORE, {
-                x: 325,
+                x: fourthBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "T",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_U.setProperty(hmUI.widget.MORE, {
-                x: 40,
+                x: firstBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "U",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_V.setProperty(hmUI.widget.MORE, {
-                x: 230,
+                x: thirdBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "V",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_W.setProperty(hmUI.widget.MORE, {
-                x: 325,
+                x: fourthBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "W",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_X.setProperty(hmUI.widget.MORE, {
-                x: 2,
+                x: firstBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "X",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_Y.setProperty(hmUI.widget.MORE, {
-                x: 135,
+                x: secondBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "Y",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_Z.setProperty(hmUI.widget.MORE, {
-                x: 325,
+                x: fourthBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "Z",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
         }
 
-        function setKeysLowerCase(_start_y) {
+        function setKeysLowerCase(_start_y, firstBtnCol, secondBtnCol, thirdBtnCol, fourthBtnCol, normalBtnWidth, normalBtnHeight, btnFontSize) {
 
             KEY_ABC.setProperty(hmUI.prop.MORE, {
-                x: 40,
+                x: firstBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "abc",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_DEF.setProperty(hmUI.prop.MORE, {
-                x: 135,
+                x: secondBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "def",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_GHI.setProperty(hmUI.prop.MORE, {
-                x: 230,
+                x: thirdBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: 'ghi',
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_JKL.setProperty(hmUI.prop.MORE, {
-                x: 40,
+                x: firstBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "jkl",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_MN.setProperty(hmUI.prop.MORE, {
-                x: 135,
+                x: secondBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "mnñ",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_OPQ.setProperty(hmUI.prop.MORE, {
-                x: 230,
+                x: thirdBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: 'opq',
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_RST.setProperty(hmUI.prop.MORE, {
-                x: 40,
+                x: firstBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "rst",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_UVW.setProperty(hmUI.prop.MORE, {
-                x: 135,
+                x: secondBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "uvw",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_XYZ.setProperty(hmUI.prop.MORE, {
-                x: 230,
+                x: thirdBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: 'xyz',
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_A.setProperty(hmUI.widget.MORE, {
-                x: 135,
+                x: secondBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "a",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_B.setProperty(hmUI.widget.MORE, {
-                x: 230,
+                x: thirdBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "b",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_C.setProperty(hmUI.widget.MORE, {
-                x: 325,
+                x: fourthBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "c",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_D.setProperty(hmUI.widget.MORE, {
-                x: 40,
+                x: firstBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "d",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_E.setProperty(hmUI.widget.MORE, {
-                x: 230,
+                x: thirdBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "e",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_F.setProperty(hmUI.widget.MORE, {
-                x: 325,
+                x: fourthBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "f",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_G.setProperty(hmUI.widget.MORE, {
-                x: 40,
+                x: firstBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "g",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_H.setProperty(hmUI.widget.MORE, {
-                x: 135,
+                x: secondBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "h",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_I.setProperty(hmUI.widget.MORE, {
-                x: 325,
+                x: fourthBtnCol,
                 y: _start_y + 156,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "i",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_J.setProperty(hmUI.widget.MORE, {
-                x: 135,
+                x: secondBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "j",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_K.setProperty(hmUI.widget.MORE, {
-                x: 230,
+                x: thirdBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "k",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_L.setProperty(hmUI.widget.MORE, {
-                x: 325,
+                x: fourthBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "l",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_M.setProperty(hmUI.widget.MORE, {
-                x: 40,
+                x: firstBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "m",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_N.setProperty(hmUI.widget.MORE, {
-                x: 230,
+                x: thirdBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "n",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_ENE.setProperty(hmUI.widget.MORE, {
-                x: 325,
+                x: fourthBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "ñ",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_O.setProperty(hmUI.widget.MORE, {
-                x: 40,
+                x: firstBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "o",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_P.setProperty(hmUI.widget.MORE, {
-                x: 135,
+                x: secondBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "p",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_Q.setProperty(hmUI.widget.MORE, {
-                x: 325,
+                x: fourthBtnCol,
                 y: _start_y + 108,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "q",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_R.setProperty(hmUI.widget.MORE, {
-                x: 135,
+                x: secondBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "r",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_S.setProperty(hmUI.widget.MORE, {
-                x: 230,
+                x: thirdBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "s",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_T.setProperty(hmUI.widget.MORE, {
-                x: 325,
+                x: fourthBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "t",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_U.setProperty(hmUI.widget.MORE, {
-                x: 40,
+                x: firstBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "u",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_V.setProperty(hmUI.widget.MORE, {
-                x: 230,
+                x: thirdBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "v",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_W.setProperty(hmUI.widget.MORE, {
-                x: 325,
+                x: fourthBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "w",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_X.setProperty(hmUI.widget.MORE, {
-                x: 40,
+                x: firstBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "x",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_Y.setProperty(hmUI.widget.MORE, {
-                x: 135,
+                x: secondBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "y",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
 
             KEY_Z.setProperty(hmUI.widget.MORE, {
-                x: 325,
+                x: fourthBtnCol,
                 y: _start_y + 60,
-                w: 90,
-                h: 45,
+                w: normalBtnWidth,
+                h: normalBtnHeight,
                 text: "z",
-                text_size: 27,
+                text_size: btnFontSize,
                 radius: px(14),
             })
         }
