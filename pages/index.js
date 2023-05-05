@@ -170,14 +170,14 @@ Page({
             text: 'Please check\ninternet connection\nin mobile.'
           })
           getApp()._options.globalData.searchCity = ''
-          keyboard = new keyboard_gtr3(100, DEVICE_WIDTH, getApp()._options.globalData.searchCity)
+          keyboard = new keyboard_gtr3(DEVICE_HEIGHT / 5, DEVICE_WIDTH, getApp()._options.globalData.searchCity)
         } else {
           getApp()._options.globalData.searchCity = cityResult ? cityResult.city : ''
-          keyboard = new keyboard_gtr3(100, DEVICE_WIDTH, getApp()._options.globalData.searchCity)
+          keyboard = new keyboard_gtr3(DEVICE_HEIGHT / 5 , DEVICE_WIDTH, getApp()._options.globalData.searchCity)
         }
       })
     } else {
-      keyboard = new keyboard_gtr3(100, DEVICE_WIDTH, getApp()._options.globalData.searchCity)
+      keyboard = new keyboard_gtr3(DEVICE_HEIGHT / 5, DEVICE_WIDTH, getApp()._options.globalData.searchCity)
     }
     hmUI.createWidget(hmUI.widget.BUTTON, {
       x: 255,
