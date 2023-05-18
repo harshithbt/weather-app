@@ -64,6 +64,18 @@ const fetchCity = async (ctx) => {
   }
 }
 
+
+function getSearchList() {
+  return settings.settingsStorage.getItem('searchHistory')
+    ? JSON.parse(settings.settingsStorage.getItem('searchHistory'))
+    : []
+}
+
+function removeDuplicates(arr) {
+  return arr.filter((item,
+      index) => arr.indexOf(item) === index);
+}
+
 AppSideService({
   onInit() {
     messageBuilder.listen(() => {})
@@ -78,6 +90,28 @@ AppSideService({
         return fetchDataWeather(ctx, params)
       } else if (method === 'GET_DATA_CITY') {
         return fetchCity(ctx)
+      } else if (method === 'SAVE_SEARCH') {
+        const searchList = getSearchList()
+        const newSearchList = [...searchList, params.searchWord]
+        const refreshArray = removeDuplicates(newSearchList)
+        settings.settingsStorage.setItem('searchHistory', JSON.stringify(refreshArray))
+        ctx.response({
+          data: { result: refreshArray },
+        })
+      } else if (method === 'DELETE_SEARCH') {
+        const searchList = getSearchList()
+        const newSearchList = searchList.filter((_, i) => i !== params.searchIndex)
+        const refreshArray = removeDuplicates(newSearchList)
+        settings.settingsStorage.setItem('searchHistory', JSON.stringify(refreshArray))
+        ctx.response({
+          data: { result: refreshArray },
+        })
+      } else if (method === 'GETALL_SEARCH') {
+        const searchList = getSearchList()
+        const refreshArray = removeDuplicates(searchList)
+        ctx.response({
+          data: { result: refreshArray },
+        })
       }
     })
   },

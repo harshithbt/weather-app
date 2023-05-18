@@ -6,7 +6,7 @@ import {
 import { json2str, str2json, buf2hex, bin2hex, bin2json, str2buf } from '../shared/data'
 import { keyboard_gtr3 } from "../shared/keyboard";
 import { DEVICE_WIDTH, DEVICE_HEIGHT } from "../utils/config/device";
-
+import { imgLoader } from '../shared/loader'
 const logger = DeviceRuntimeCore.HmLogger.getLogger("weather-app");
 const { messageBuilder } = getApp()._options.globalData;
 const { defaultWeatherApiKey } = getApp()._options.globalData;
@@ -21,7 +21,9 @@ let keyboard;
 let welcomeText;
 
 Page({
-  state: {},
+  state: {
+    loader: null,
+  },
   build() {
     hmUI.createWidget(hmUI.widget.TEXT, {
       x: (DEVICE_WIDTH - px(200)) / 2,
@@ -36,15 +38,15 @@ Page({
       text: 'Weather App'
     })
     const searchbt = hmUI.createWidget(hmUI.widget.BUTTON, {
-      x: 100,
-      y: px(365),
-      w: px(150),
+      x: ((DEVICE_WIDTH - px(100)) / 2) - (px(100/2) + 10),
+      y: px(380),
+      w: px(100),
       h: px(50),
       text_size: px(26),
       radius: px(16),
       normal_color: DEFAULT_COLOR,
       press_color: DEFAULT_COLOR_TRANSPARENT,
-      text: 'Search City',
+      text: 'Search',
       click_func: (button_widget) => {
         const cityData = keyboard.text_value.trim();
         getApp()._options.globalData.searchCity = cityData;
@@ -55,7 +57,7 @@ Page({
           })
         } else {
           console.log(cityData)
-          searchbt.setProperty(hmUI.prop.TEXT, 'Searching..');
+          this.showLoader()
           messageBuilder.request({
             method: "GET_DATA_WEATHER",
             params: {
@@ -65,11 +67,10 @@ Page({
           })
             .then(data => {
               console.log('receive data console')
-              searchbt.setProperty(hmUI.prop.TEXT, 'Search City');
               const result = data.result.body;
               console.log(json2str(result))
-              // console.log(result.cod)
               if (result && result.cod && (result.cod == 404 || result.cod == '404')) {
+                this.removeLoader()
                 hmApp.gotoPage({
                   url: 'pages/weather',
                   param: json2str({
@@ -87,6 +88,7 @@ Page({
                   })
                 })
               } else if (result && result.cod && (result.cod == 401 || result.cod == '401')) {
+                this.removeLoader()
                 hmApp.gotoPage({
                   url: 'pages/weather',
                   param: json2str({
@@ -104,25 +106,33 @@ Page({
                   })
                 })
               } else if (result && result.cod && (result.cod == 200 || result.cod == '200')) {
-                console.log('else if');
-                hmApp.gotoPage({
-                  url: 'pages/weather',
-                  param: json2str({
-                    wLocation: result.name ? result.name : '',
-                    wDescription: result.weather[0].description,
-                    wTemp: result.main.temp ? result.main.temp : '',
-                    wTempMin: result.main.temp_min ? result.main.temp_min : '',
-                    wTempMax: result.main.temp_max ? result.main.temp_max : '',
-                    wPressure: result.main.pressure ? result.main.pressure : '',
-                    whumidity: result.main.humidity ? result.main.humidity : '',
-                    wSealevel: result.main.sea_level ? result.main.sea_level : 'NA',
-                    wIcon: result.weather[0].icon,
-                    eCode: result.cod,
-                    eMessage: ''
-                  })
+                messageBuilder.request({
+                  method: "SAVE_SEARCH",
+                  params: {
+                    searchWord: cityData
+                  }
                 })
+                  .then(data => {
+                    this.removeLoader()
+                    hmApp.gotoPage({
+                      url: 'pages/weather',
+                      param: json2str({
+                        wLocation: result.name ? result.name : '',
+                        wDescription: result.weather[0].description,
+                        wTemp: result.main.temp ? result.main.temp : '',
+                        wTempMin: result.main.temp_min ? result.main.temp_min : '',
+                        wTempMax: result.main.temp_max ? result.main.temp_max : '',
+                        wPressure: result.main.pressure ? result.main.pressure : '',
+                        whumidity: result.main.humidity ? result.main.humidity : '',
+                        wSealevel: result.main.sea_level ? result.main.sea_level : 'NA',
+                        wIcon: result.weather[0].icon,
+                        eCode: result.cod,
+                        eMessage: ''
+                      })
+                    })
+                  })
               } else {
-                console.log('else');
+                this.removeLoader()
                 hmApp.gotoPage({
                   url: 'pages/weather',
                   param: json2str({
@@ -145,7 +155,7 @@ Page({
       },
     });
     if (getApp()._options.globalData.searchCity == '') {
-      searchbt.setProperty(hmUI.prop.TEXT, 'Loading..');
+      this.showLoader()
       welcomeText = hmUI.createWidget(hmUI.widget.TEXT, {
         x: (DEVICE_WIDTH - px(350)) / 2,
         y: px(30),
@@ -164,7 +174,7 @@ Page({
         const cityResult = data.result.body;
         console.log(cityResult);
         hmUI.deleteWidget(welcomeText);
-        searchbt.setProperty(hmUI.prop.TEXT, 'Search City');
+        this.removeLoader()
         if (!cityResult) {
           hmUI.showToast({
             text: 'Please check\ninternet connection\nin mobile.'
@@ -173,15 +183,15 @@ Page({
           keyboard = new keyboard_gtr3(DEVICE_HEIGHT / 5, DEVICE_WIDTH, getApp()._options.globalData.searchCity)
         } else {
           getApp()._options.globalData.searchCity = cityResult ? cityResult.city : ''
-          keyboard = new keyboard_gtr3(DEVICE_HEIGHT / 5 , DEVICE_WIDTH, getApp()._options.globalData.searchCity)
+          keyboard = new keyboard_gtr3(DEVICE_HEIGHT / 5, DEVICE_WIDTH, getApp()._options.globalData.searchCity)
         }
       })
     } else {
       keyboard = new keyboard_gtr3(DEVICE_HEIGHT / 5, DEVICE_WIDTH, getApp()._options.globalData.searchCity)
     }
     hmUI.createWidget(hmUI.widget.BUTTON, {
-      x: 255,
-      y: px(365),
+      x: ((DEVICE_WIDTH - px(100)) / 2) + (px(100/2) + 10),
+      y: px(380),
       w: px(100),
       h: px(50),
       text_size: px(26),
@@ -194,4 +204,12 @@ Page({
       },
     });
   },
+  showLoader() {
+    this.state.loader = new imgLoader(DEVICE_WIDTH, DEVICE_HEIGHT).loader
+    this.state.loader.setProperty(hmUI.prop.ANIM_STATUS, hmUI.anim_status.START)
+  },
+  removeLoader() {
+    this.state.loader.setProperty(hmUI.prop.ANIM_STATUS, hmUI.anim_status.STOP)
+    hmUI.deleteWidget(this.state.loader)
+  }
 });

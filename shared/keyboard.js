@@ -37,6 +37,10 @@ export class keyboard_gtr3 {
             color: 0xffffff
         })
 
+        text_input.addEventListener(hmUI.event.CLICK_DOWN, () => {
+            hmApp.gotoPage({ url: 'pages/searchhistory' })
+        })
+
         text_input.setProperty(hmUI.prop.MORE, {
             text: this.text_value,
         })

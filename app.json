@@ -6,7 +6,7 @@
     "appType": "app",
     "version": {
       "code": 1,
-      "name": "1.2.0"
+      "name": "1.1.1"
     },
     "icon": "icon.png",
     "vender": "zepp",
@@ -27,7 +27,9 @@
           "pages": [
             "pages/index",
             "pages/weather",
-            "pages/about"
+            "pages/about",
+            "pages/searchhistory",
+            "pages/buycoffee"
           ]
         },
         "app-side": {
@@ -39,16 +41,16 @@
       },
       "platforms": [
         {
+          "name": "gtr3",
+          "deviceSource": 226
+        },
+        {
           "name": "gtr3-pro",
           "deviceSource": 229
         },
         {
           "name": "gtr3-pro-w",
           "deviceSource": 230
-        },
-        {
-          "name": "gtr3",
-          "deviceSource": 226
         },
         {
           "name": "gtr3-w",

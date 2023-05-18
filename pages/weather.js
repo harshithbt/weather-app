@@ -34,11 +34,11 @@ Page({
             text_size: px(28),
             align_h: hmUI.align.CENTER_H,
             align_v: hmUI.align.CENTER_V,
-            text_style: hmUI.text_style.NONE,
+            text_style: hmUI.text_style.WRAP,
             text: weatherInfo
         });
         hmUI.createWidget(hmUI.widget.BUTTON, {
-            x: (DEVICE_WIDTH / 4),
+            x: ((DEVICE_WIDTH - px(100)) / 2) - (px(100/2) + 10),
             y: px(380),
             w: px(100),
             h: px(50),
@@ -52,7 +52,7 @@ Page({
             },
         });
         hmUI.createWidget(hmUI.widget.BUTTON, {
-            x: (DEVICE_WIDTH / 2),
+            x: ((DEVICE_WIDTH - px(100)) / 2) + (px(100/2) + 10),
             y: px(380),
             w: px(100),
             h: px(50),
