@@ -11,14 +11,8 @@ const logger = DeviceRuntimeCore.HmLogger.getLogger("weather-app");
 const { messageBuilder } = getApp()._options.globalData;
 const { defaultWeatherApiKey } = getApp()._options.globalData;
 
-const buttonWidth = 100;
-const buttonWidthMargin = 102;
-const buttonHeight = 60;
-const buttonHeightMargin = 62;
-const groupHeight = 5 * buttonHeightMargin;
-const margin = 15;
 let keyboard;
-let welcomeText;
+let welcomeIcon;
 
 Page({
   state: {
@@ -38,7 +32,7 @@ Page({
       text: 'Weather App'
     })
     const searchbt = hmUI.createWidget(hmUI.widget.BUTTON, {
-      x: ((DEVICE_WIDTH - px(100)) / 2) - (px(100/2) + 10),
+      x: ((DEVICE_WIDTH - px(100)) / 2) - (px(100 / 2) + 10),
       y: px(380),
       w: px(100),
       h: px(50),
@@ -155,25 +149,18 @@ Page({
       },
     });
     if (getApp()._options.globalData.searchCity == '') {
+      welcomeIcon = hmUI.createWidget(hmUI.widget.IMG, {
+        x: (DEVICE_WIDTH - px(100)) / 2,
+        y: (DEVICE_HEIGHT - px(100)) / 2,
+        src: '02.png',
+      })
       this.showLoader()
-      welcomeText = hmUI.createWidget(hmUI.widget.TEXT, {
-        x: (DEVICE_WIDTH - px(350)) / 2,
-        y: px(30),
-        w: px(350),
-        h: px(350),
-        color: 0xffffff,
-        text_size: px(32),
-        align_h: hmUI.align.CENTER_H,
-        align_v: hmUI.align.CENTER_V,
-        text_style: hmUI.text_style.NONE,
-        text: 'Welcome'
-      });
       messageBuilder.request({
         method: "GET_DATA_CITY"
       }).then(data => {
         const cityResult = data.result.body;
         console.log(cityResult);
-        hmUI.deleteWidget(welcomeText);
+        hmUI.deleteWidget(welcomeIcon);
         this.removeLoader()
         if (!cityResult) {
           hmUI.showToast({
@@ -190,7 +177,7 @@ Page({
       keyboard = new keyboard_gtr3(DEVICE_HEIGHT / 5, DEVICE_WIDTH, getApp()._options.globalData.searchCity)
     }
     hmUI.createWidget(hmUI.widget.BUTTON, {
-      x: ((DEVICE_WIDTH - px(100)) / 2) + (px(100/2) + 10),
+      x: ((DEVICE_WIDTH - px(100)) / 2) + (px(100 / 2) + 10),
       y: px(380),
       w: px(100),
       h: px(50),

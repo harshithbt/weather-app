@@ -9,7 +9,9 @@ const logger = DeviceRuntimeCore.HmLogger.getLogger("weather-app");
 let weatherInfo = '';
 
 Page({
-    state: {},
+    state: {
+        weatherIcon: '02.png'
+    },
     onInit(params) {
         const paramsObj = str2json(params)
         console.log(params);
@@ -19,15 +21,21 @@ Page({
             weatherInfo = eMessage;
         } else if (eCode == 200) {
             weatherInfo = wLocation+'\n'+wDescription+'\nTemp- '+wTemp+'°c\n'+wTempMin+'/'+wTempMax+'°c\nHumidity- '+whumidity+'%\nPressure- '+wPressure+'mbar\nSealevel- '+wSealevel;
+            this.state.weatherIcon = wIcon ? wIcon.slice(0, 2)+'.png' : '02.png';
         } else {
             weatherInfo = eMessage;
         }
         weatherInfo = weatherInfo.trim();
     },
     build() {
+        hmUI.createWidget(hmUI.widget.IMG, {
+            x: (DEVICE_WIDTH - px(100)) / 2,
+            y: px(10),
+            src: this.state.weatherIcon,
+        })
         hmUI.createWidget(hmUI.widget.TEXT, {
             x: (DEVICE_WIDTH - px(350)) / 2,
-            y: px(40),
+            y: px(60),
             w: px(350),
             h: px(350),
             color: 0xffffff,
@@ -39,7 +47,7 @@ Page({
         });
         hmUI.createWidget(hmUI.widget.BUTTON, {
             x: ((DEVICE_WIDTH - px(100)) / 2) - (px(100/2) + 10),
-            y: px(380),
+            y: px(400),
             w: px(100),
             h: px(50),
             text_size: px(26),
@@ -53,7 +61,7 @@ Page({
         });
         hmUI.createWidget(hmUI.widget.BUTTON, {
             x: ((DEVICE_WIDTH - px(100)) / 2) + (px(100/2) + 10),
-            y: px(380),
+            y: px(400),
             w: px(100),
             h: px(50),
             text_size: px(26),
