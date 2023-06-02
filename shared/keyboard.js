@@ -1,3 +1,95 @@
+
+import { Fx } from "./fx";
+
+class Cursor {
+    constructor({ border, line_width, locX, line_height, color }) {
+        this.widget = null;
+        this.border = border;
+        this.line_width = line_width;
+        this.locX = locX;
+        this.line_height = line_height;
+        this.color = color;
+        this.fxInstance = null;
+        this.flashTimer = null;
+        this.flashShowing = true;
+        this.offsetX = -2;
+    }
+    setFlash(enable) {
+        if (enable) {
+            if (!this.flashTimer) {
+                this.flashTimer = this.flashTimer = timer.createTimer(
+                    150,
+                    350,
+                    (option) => {
+                        if (this.flashShowing) {
+                            this.widget.setProperty(
+                                hmUI.prop.VISIBLE,
+                                (this.flashShowing = false)
+                            );
+                        } else {
+                            this.widget.setProperty(
+                                hmUI.prop.VISIBLE,
+                                (this.flashShowing = true)
+                            );
+                        }
+                    },
+                    {}
+                );
+            }
+        } else {
+            // if enable
+            if (this.flashTimer) {
+                timer.stopTimer(this.flashTimer);
+                this.flashTimer = null;
+            }
+            this.widget.setProperty(hmUI.prop.VISIBLE, true);
+        }
+    }
+    onCreate() {
+        this.widget = hmUI.createWidget(hmUI.widget.FILL_RECT, {
+            x: this.border.x + this.locX + this.offsetX,
+            y: this.border.y + (this.border.h - this.line_height) / 2,
+            w: this.line_width,
+            h: this.line_height,
+            color: this.color,
+            radius: px(2),
+        });
+        this.setFlash(true);
+    }
+    move(locX, useFx) {
+        if (useFx) {
+            this.setFlash(false);
+            if (this.fxInstance) {
+                this.fxInstance.setEnable(false);
+            }
+            this.fxInstance = new Fx({
+                begin: this.locX,
+                end: locX,
+                fps: 60,
+                time: 0.1,
+                style: Fx.Styles.EASE_IN_QUAD,
+                func: (x) => {
+                    this.widget.setProperty(
+                        hmUI.prop.X,
+                        x + this.border.x + this.offsetX
+                    );
+                    this.locX = x;
+                },
+                onStop: () => {
+                    this.fxInstance = null;
+                    this.setFlash(true);
+                },
+            });
+        } else {
+            if (this.fxInstance) {
+                this.fxInstance.setEnable(false);
+            }
+            this.locX = locX;
+            this.widget.setProperty(hmUI.prop.X, locX + this.border.x + this.offsetX);
+        }
+    }
+}
+
 export class keyboard_gtr3 {
     constructor(_y, _x, searchValue) {
         this.text_value = searchValue
@@ -18,7 +110,17 @@ export class keyboard_gtr3 {
         this.textAreaWidth = 350
         this.textAreaheight = 50
         this.vibrate = hmSensor.createSensor(hmSensor.id.VIBRATE)
-
+        this.border = { x: ((_x - this.textAreaWidth) / 2) + 3, y: this.start_y - 2, w: this.textAreaWidth, h: this.textAreaheight };
+        this.beginSafetyDistance = px(18);
+        this.cursor = new Cursor({
+            border: this.border,
+            line_width: px(4),
+            locX: this.beginSafetyDistance,
+            line_height: px(40),
+            color: 0x28c4ff,
+        });
+        this.cursor.onCreate();
+        this.setCursorPosition(this.text_value)
         hmUI.createWidget(hmUI.widget.STROKE_RECT, {
             x: (_x - this.textAreaWidth) / 2,
             y: this.start_y - 2,
@@ -31,13 +133,23 @@ export class keyboard_gtr3 {
         const text_input = hmUI.createWidget(hmUI.widget.TEXT, {
             x: (_x - (this.textAreaWidth - 2)) / 2,
             y: this.start_y,
-            w: this.textAreaWidth - 2,
+            // w: this.textAreaWidth - 52,
+            w: this.textAreaWidth,
             h: this.textAreaheight - 2,
             text_size: 26,
             color: 0xffffff
         })
 
+        // const historyBtn = hmUI.createWidget(hmUI.widget.IMG, {
+        //     x: (_x - (this.textAreaWidth)) / 2 + this.textAreaWidth - 50,
+        //     y: this.start_y + 4,
+        //     src: 'history.png',
+        // })
+
         text_input.addEventListener(hmUI.event.CLICK_DOWN, () => {
+            this.vibrate.stop()
+            this.vibrate.scene = 24
+            this.vibrate.start()
             hmApp.gotoPage({ url: 'pages/searchhistory' })
         })
 
@@ -2031,6 +2143,7 @@ export class keyboard_gtr3 {
         text_input.setProperty(hmUI.prop.MORE, {
             text: this.text_value,
         })
+        this.setCursorPosition(this.text_value)
     }
 
     removeCharacter(text_input) {
@@ -2044,6 +2157,7 @@ export class keyboard_gtr3 {
         text_input.setProperty(hmUI.prop.MORE, {
             text: this.text_value,
         })
+        this.setCursorPosition(this.text_value)
     }
 
     clearCharacters(text_input) {
@@ -2057,5 +2171,31 @@ export class keyboard_gtr3 {
         text_input.setProperty(hmUI.prop.MORE, {
             text: this.text_value,
         })
+        this.setCursorPosition(this.text_value)
+    }
+
+    setCursorPosition(text_input) {
+        let textWList = []
+        let textTotalWidth = 0
+        for (let i = 0, width = 0; i < text_input.length; ++i) {
+            width = hmUI.getTextLayout(text_input.charAt(i), {
+                text_size: 26,
+                text_width: 0,
+                wrapped: 0,
+            }).width;
+            textWList[i] = width;
+            textTotalWidth += width;
+        }
+        if (this.textAreaWidth > textTotalWidth) {
+            this.cursor.move(
+                textTotalWidth,
+                true
+            );
+        } else {
+            this.cursor.move(
+                this.textAreaWidth - 3,
+                true
+            );
+        }
     }
 }

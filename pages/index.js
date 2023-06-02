@@ -151,28 +151,28 @@ Page({
     if (getApp()._options.globalData.searchCity == '') {
       welcomeIcon = hmUI.createWidget(hmUI.widget.IMG, {
         x: (DEVICE_WIDTH - px(100)) / 2,
-        y: (DEVICE_HEIGHT - px(100)) / 2,
+        y: ((DEVICE_HEIGHT - px(100)) / 2) - 5,
         src: '02.png',
       })
       this.showLoader()
-      messageBuilder.request({
+      const newLocal = messageBuilder.request({
         method: "GET_DATA_CITY"
       }).then(data => {
         const cityResult = data.result.body;
         console.log(cityResult);
         hmUI.deleteWidget(welcomeIcon);
-        this.removeLoader()
+        this.removeLoader();
         if (!cityResult) {
           hmUI.showToast({
             text: 'Please check\ninternet connection\nin mobile.'
-          })
-          getApp()._options.globalData.searchCity = ''
-          keyboard = new keyboard_gtr3(DEVICE_HEIGHT / 5, DEVICE_WIDTH, getApp()._options.globalData.searchCity)
+          });
+          getApp()._options.globalData.searchCity = '';
+          keyboard = new keyboard_gtr3(DEVICE_HEIGHT / 5, DEVICE_WIDTH, getApp()._options.globalData.searchCity);
         } else {
-          getApp()._options.globalData.searchCity = cityResult ? cityResult.city : ''
-          keyboard = new keyboard_gtr3(DEVICE_HEIGHT / 5, DEVICE_WIDTH, getApp()._options.globalData.searchCity)
+          getApp()._options.globalData.searchCity = cityResult ? cityResult.city : '';
+          keyboard = new keyboard_gtr3(DEVICE_HEIGHT / 5, DEVICE_WIDTH, getApp()._options.globalData.searchCity);
         }
-      })
+      });
     } else {
       keyboard = new keyboard_gtr3(DEVICE_HEIGHT / 5, DEVICE_WIDTH, getApp()._options.globalData.searchCity)
     }
